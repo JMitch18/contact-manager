@@ -8,3 +8,12 @@ export default function Header(props) {
     </div>
   );
 }
+
+Header.defaultProps = {
+  branding: "My Apps"
+};
+
+const headingStyle = {
+  color: "red",
+  fontSize: "50px"
+};
