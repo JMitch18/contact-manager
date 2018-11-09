@@ -25,13 +25,29 @@ class Contacts extends Component {
     ]
   };
 
+  deleteContact = id => {
+    const { contacts } = this.state;
+
+    // filtering out the contacts I want deleted
+    const newContacts = contacts.filter(contact => contact.id !== id);
+
+    this.setState({
+      contacts: newContacts
+    });
+  };
+
   render() {
+    //destructing prop values out of the state
     const { contacts } = this.state;
 
     return (
       <React.Fragment>
         {contacts.map(contact => (
-          <Contact key={contact.id} contact={contact} />
+          <Contact
+            key={contact.id}
+            contact={contact}
+            deleteClickHandler={this.deleteContact.bind(this, contact.id)} // passing in contact to delete
+          />
         ))}
       </React.Fragment>
     );

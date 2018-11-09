@@ -11,6 +11,10 @@ class Contact extends Component {
     this.setState({ showContactInfo: !this.state.showContactInfo });
   };
 
+  onDeleteClick = () => {
+    this.props.deleteClickHandler();
+  };
+
   render() {
     //destructuring pulling values
     const { contact } = this.props;
@@ -19,7 +23,16 @@ class Contact extends Component {
       <div className="card card-body mb-3">
         <h4>
           {contact.name}{" "}
-          <i onClick={this.onShowClick} className="fas fa-sort-down" />
+          <i
+            onClick={this.onShowClick}
+            className="fas fa-sort-down"
+            style={{ cursor: "pointer" }}
+          />
+          <i
+            className="fas fa-times"
+            style={{ cursor: "pointer", float: "right", color: "red" }}
+            onClick={this.onDeleteClick}
+          />
         </h4>
 
         {/* Checking the state if true show props if false hide the props */}
@@ -35,7 +48,8 @@ class Contact extends Component {
 }
 
 Contact.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
+  deleteClickHandler: PropTypes.func.isRequired
 };
 
 export default Contact;
